@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # ============================================
 # EFC Live Wallpaper Script (Flexible asf)
 # Author: Seuriin (SSL-ACTX)
@@ -96,7 +98,7 @@ fi
 # -----------------------------
 echo "⏳ Waiting for desktop session..."
 while ! xprop -root _NET_DESKTOP_NAMES >/dev/null 2>&1; do sleep 1; done
-sleep 2
+sleep 6
 
 # -----------------------------
 # Check & install xwinwrap
@@ -114,16 +116,8 @@ else
 fi
 
 # -----------------------------
-# Check mpv HW decode support
+# MPV options
 # -----------------------------
-echo "🔍 Checking mpv hardware decode support..."
-if ! mpv --hwdec=auto --no-config --vo=null --ao=null --frames=1 2>&1 | grep -qi "using hardware decoding"; then
-    echo "⚠ No hardware decode — fallback to software"
-    MPV_HWDEC="--hwdec=no"
-else
-    echo "✅ Hardware decoding supported"
-fi
-
 MPV_OPTIONS="$MPV_HWDEC --panscan=1.0 --no-audio --no-osc --no-osd-bar --no-input-default-bindings --loop"
 
 # -----------------------------
